@@ -1,0 +1,20 @@
+Product Name: Slug Study
+Team Name: Slug Study
+Release Name: First Release
+Release Date: Oct 8th, 2019
+Revision Number: 1.0
+Revision Date: Oct 8th, 2019
+
+High Level Goals
+Students and tutors can get matched under the course.
+Generate an order containing time, location, materials information and send as emails.
+Students and tutors can rate each other after one tutoring session.
+Recognize the ability of tutor to teach a course.
+
+User stories
+Sprint 1
+(5) As a student in an advanced CS course, I want to have a tutor to help me with the tough CS course so that I can have a better academic performance.
+(4) As a top student in the major, I want to tutor students so that I can make extra income to spend.
+(3) As a student who tried online tutoring, I want to have a student who took the course before to teach me so that the learning experience would be more adequate and efficient.
+(2) As a student in a class that TA sections are always crowded, I want to have a tutor who can concentrate on teaching me so that I don’t need to waste time waiting for TA’s help in section.
+(1) As a student whose current class used to be taught by different professor, I want the tutor took the course taught by the same professor so that I can have make my assignment more appealing to the professor.
