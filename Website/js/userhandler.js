@@ -1,3 +1,5 @@
+// Get user data
+
 var db = openDatabase('mydb', '1.0', 'User database', 2 * 1024 * 1024);
 
 db.transaction(function (tx) {
