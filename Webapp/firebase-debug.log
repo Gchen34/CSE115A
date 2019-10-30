@@ -1,0 +1,25 @@
+[debug] [2019-01-19T09:23:30.059Z] ----------------------------------------------------------------------
+[debug] [2019-01-19T09:23:30.062Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2019-01-19T09:23:30.062Z] CLI Version:   6.3.0
+[debug] [2019-01-19T09:23:30.062Z] Platform:      darwin
+[debug] [2019-01-19T09:23:30.062Z] Node Version:  v8.10.0
+[debug] [2019-01-19T09:23:30.063Z] Time:          Sat Jan 19 2019 01:23:30 GMT-0800 (PST)
+[debug] [2019-01-19T09:23:30.063Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-01-19T09:23:30.073Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-01-19T09:23:30.073Z] > authorizing via signed-in user
+[debug] [2019-01-19T09:23:30.073Z] [iam] checking project cruzhacks-2019 for permissions ["firebase.projects.get"]
+[debug] [2019-01-19T09:23:30.076Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/cruzhacks-2019:testIamPermissions  
+
+[debug] [2019-01-19T09:23:30.893Z] <<< HTTP RESPONSE 200
+[debug] [2019-01-19T09:23:30.895Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/cruzhacks-2019  
+ 
+[debug] [2019-01-19T09:23:31.331Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/cat/Desktop/Cruz Hacks 2019/Cruzhacks-2019'...
+[info] 
+[debug] [2019-01-19T09:23:31.333Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/123764068447/clients/_:getWebAppConfig  
+ 
+[debug] [2019-01-19T09:23:31.715Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
