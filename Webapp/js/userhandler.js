@@ -62,7 +62,7 @@ function setGreeting() {
     db.transaction(function (tx) {
         tx.executeSql('SELECT name FROm users WHERE email=?', [localStorage.getItem('user')], function (tx, results) {
             let ud = results.rows.item(0);
-            $("#greeting").html(`Good afternoon, ${ud.name}`);
+            $("#greeting").html(`Hello, ${ud.name}`);
         })
     });
 }

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Food Search</title>
+  <title>SlugStudy</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,7 +28,7 @@
 </style>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark rightBar" style="background-color:none;">
-    <a class="navbar-brand" href="#">Diet Tracker</a>
+    <a class="navbar-brand" href="#">SlugStudy</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -39,13 +39,10 @@
           <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
         </li> -->
         <li class="nav-item active">
-          <a class="nav-link" href="search.html">Search</a>
+          <a class="nav-link" href="search.html">Browse</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="home.html">Charts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="recipe.html">Recipe Generator</a>
+          <a class="nav-link" href="search.html">Study</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="login.html">Login</a>
@@ -59,7 +56,7 @@
 
   <div id="introGroup"></div>
   <h1 id="greeting">Hello, User</h1>
-  <h3 id="subgreeting">What did you eat today?</h3>
+  <h3 id="subgreeting">What class are you looking for help with?</h3>
   </div>
 
   <form id="searchForm" autocomplete="off">
@@ -71,8 +68,8 @@
   </form>
 
   <div id="nutritionPaper">
-    <h3 id="foodName" class="paperTextHeader"><b>Nutritional Data</b> </h3>
-    <p id="energy" class="paperText" style="margin-top: 10px">Enter an item to display nutition info!</p>
+    <h3 id="foodName" class="paperTextHeader"><b>Available Tutors</b> </h3>
+    <p id="energy" class="paperText" style="margin-top: 10px">Enter a class code to view available tutors!</p>
     <p id="sugars" class="paperText"></p>
     <p id="lipids" class="paperText"></p>
     <p id="carbs" class="paperText"></p>
@@ -84,7 +81,7 @@
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script>
     setGreeting();
-    autocomplete(document.getElementById("searchField"), ['apple', 'asparagus', 'avocado', 'artichoke', 'apricot', 'banana', 'beans', 'broccoli', 'bacon', 'bread', 'carrot', 'cranberry', 'celery', 'cabbage', 'coconut', 'chicken', 'calamari', 'duck', 'durian', 'dates', 'fish', 'grapes', 'garlic', 'guava', 'ginger', 'grapefruit', 'honeydew', 'ham', 'hazelnut', 'ice cream', 'jackfruit', 'jellyfish', 'kale', 'kiwi', 'kimchi', 'lamb', 'lemon', 'lime', 'lobster', 'lychee', 'mango', 'milk', 'mushroom', 'mint', 'nectarine', 'noodles', 'octopus', 'onion', 'oyster', 'olive', 'orange', 'peach', 'pear', 'papaya', 'pasta', 'pineapple', 'potatoes', 'quinoa', 'rice', 'raisin', 'radish', 'salad', 'soba', 'soy milk', 'sweet potato', 'strawberry', 'tomato', 'tofu', 'tuna', 'turkey', 'trout', 'vermicelli', 'veal', 'watermelon', 'watercress', 'walnut', 'yoghurt', 'zucchini']);
+    autocomplete(document.getElementById("searchField"), ['CSE 115A', 'CSE 130', 'CSE 140', 'CSE 180']);
   </script>
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script> -->
