@@ -18,12 +18,12 @@ function searchTutors(searchTerm) {
 
   $.get(searchQuery, function(data) {
     if (data[`tutors`] === undefined) {
-      $(name).html(`<b>No tutor found for class: ${searchTerm}<\b>`)
+      $(name).html(`<b>No tutor found for class: ${searchTerm}<b>`)
       return;
     }
     let tutors = data[`tutors`]
     console.log(tutors);
-    $("name").html(tutors[0][`name`]);
+    $("#name").html(`<b> ${tutors[0][`name`]} <b>`);
   })
 }
 
