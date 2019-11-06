@@ -6,15 +6,23 @@
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
   <script src="Customdis.js"></script>
   <style type="text/css">
-      iframe { 
+      form { 
         padding-top: 30px;
 
       }
    </style>
   </head>
-  <center><<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FLos_Angeles&amp;src=azZ6aGFuZ0BnbWFpbC5jb20&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237986CB&amp;color=%23616161&amp;mode=WEEK" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe></center>
-  
-
-
+  <!-- <center><<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FLos_Angeles&amp;src=azZ6aGFuZ0BnbWFpbC5jb20&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237986CB&amp;color=%23616161&amp;mode=WEEK" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe></center> -->
+  <div src="Customdis.js"></div>
+  <center>
+    <form action="Customdis.js">
+      Tutor CruzID: <input type="text" name="Tname"><br>
+      Student CruzID: <input type="text" name="Sname"><br>
+      Day: <input type="date" name="Start"><br>
+      Start Time: <input type="time" name="Start"><br>
+      End Time: <input type="time" name="End"><br>
+      <input type="submit" value="Send Event">
+    </form>
+  </center>
   </body>
 </html>
