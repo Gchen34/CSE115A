@@ -1,5 +1,3 @@
-
-//Code taken from https://github.com/nwcell/ics.js and https://github.com/nwcell/FileSaver.js/blob/master/FileSaver.js starts here
 /* global saveAs, Blob, BlobBuilder, console */
 /* exported ics */
 
@@ -240,5 +238,3 @@ var ics = function(uidDomain, prodId) {
     }
   };
 };
-
-

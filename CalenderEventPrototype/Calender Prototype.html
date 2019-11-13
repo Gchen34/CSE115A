@@ -16,62 +16,78 @@
   </script>
   <!-- Code taken from https://github.com/nwcell/ics.js ends here -->
   <script type="text/javascript">
-    // var cal = ics();
+    var cal = ics();
     // cal.addEvent('Best Day', 'This is the best day to demonstrate a single event.', 'New York', '11/12/1987', '11/12/1987');
     // cal.download('Test');
+    debugger;
     function createEvent(){
-       var location = document.forms["myForm"]["Loc"].value;
+      debugger;
+       const location = document.forms["myForm"]["Loc"].value;
           if (Location == "") {
-              location = "Santa Cruz";
+              location = 'Santa Cruz';
             }
-        var Class = document.forms["myForm"]["Class"].value;
+        const Class = document.forms["myForm"]["Class"].value;
           if (Class == "") {
-              Class = "N/A";
+              Class = 'N/A';
             }
-        var Tname = document.forms["myForm"]["Tname"].value;
+        const Tname = document.forms["myForm"]["Tname"].value;
           if (Tname == "") {
-              Tname = "Tutor";
+              Tname = 'Tutor';
             }
-        var Sname = document.forms["myForm"]["Sname"].value;
+        const Sname = document.forms["myForm"]["Sname"].value;
           if (Sname == "") {
-              Sname = "Student";
+              Sname = 'Student';
             }
-        var date = document.forms["myForm"]["Day"].value;
-        var start = document.forms["myForm"]["Start"].value;
-        var end = document.forms["myForm"]["End"].value;
-        var startDate = date + start;
-        var endDate = date + end;
-        var desc = 'Session between ' + Tname + ' and ' + Sname;
-        var name = 'A tutoring Session for' + Class;
+        const date = document.forms["myForm"]["Day"].value;
+        const start = document.forms["myForm"]["Start"].value;
+        const end = document.forms["myForm"]["End"].value;
+        const startDate = date + ' ' + start;
+        const endDate = date + ' ' + end;
+        const desc = 'Session between ' + Tname + ' and ' + Sname;
+        const name = 'A tutoring Session for' + Class;
         cal.addEvent(desc, name, location, startDate, endDate);
         cal.download(name);
         // var Oname = Tname + ', ' + Sname + ', ' + location + ', ' +  start + '-' + end + ', ' + date;
         // cal.download(Oname);
     }
-
-      function test1(){
-        var date = document.forms["myForm"]["Day"].value;
-        var start = document.forms["myForm"]["Start"].value;
-        var end = document.forms["myForm"]["End"].value;
-        var startDate = date + start;
-        var endDate = date + end;
-        cal.addEvent('Test', 'A tutoring Session for Test2', 'Santa Cruz', startDate, endDate);
-        cal.download('TestUno');
+      debugger;
+      function MinimumEvent(){
+        debugger;
+        const date = document.forms["myForm"]["Day"].value;
+        const start = document.forms["myForm"]["Start"].value;
+        const end = document.forms["myForm"]["End"].value;
+        const startDate = date + ' ' + start;
+        const endDate = date + ' ' + end;
+        // const desc = 'Session between ' + Tname + ' and ' + Sname;
+        // const name = 'A tutoring Session for' + Class;
+        cal.addEvent('Tutoring Session', 'A tutoring Session', 'Santa Cruz', startDate, endDate);
+        cal.download('Event');
+      //   cal.addEvent('Best Day', 'This is the best day to demonstrate a single event.', 'New York', '11/12/1987', '11/12/1987');
+      //   cal.download('Test');
+      }
+      function showdate(){
+       console.log ("Test");
+        document.getElementById("1").innerHTML = document.forms["myForm"]["Day"].value;
+        document.getElementById("2").innerHTML = document.forms["myForm"]["Start"].value;
+        document.getElementById("3").innerHTML = document.forms["myForm"]["End"].value;
       }
   </script>
   </head>
   <!-- <center><<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FLos_Angeles&amp;src=azZ6aGFuZ0BnbWFpbC5jb20&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237986CB&amp;color=%23616161&amp;mode=WEEK" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe></center> -->
   <!-- <div src="Customdis.js"></div> -->
   <center>
-    <form name="myForm">
-      Tutor CruzID: <input type="text" name="Tname"><br>
-      Student CruzID: <input type="text" name="Sname"><br>
-      Location: <input type="text" name="Loc"> Will put Santa Cruz, CA if empty<br>
-      Class/Subject: <input type="text" name="Class">Will put N/A if empty<br>
-      Day: <input type="date" name="Day" required><br>
-      Start Time: <input type="time" name="Start" required><br>
-      End Time: <input type="time" name="End" required><br>
-      <input type="submit" onsubmit="return test1()" value="Create Event">
+    <form name="myForm" onSubmit="return MinimumEvent()">
+      Tutor CruzID: <input type="text" id="Tname"><br>
+      Student CruzID: <input type="text" id="Sname"><br>
+      Location: <input type="text" id="Loc"> Will put Santa Cruz, CA if empty<br>
+      Class/Subject: <input type="text" id="Class">Will put N/A if empty<br>
+      Day: <input type="date" id="Day" required><br>
+      Start Time: <input type="time" id="Start" required><br>
+      End Time: <input type="time" id="End" required><br>
+      <input type="submit" value="Create Event">
+      <p id="1"></p>
+      <p id="2"></p>
+      <p id="3"></p>
     </form>
   </center>
   </body>
