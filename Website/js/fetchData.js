@@ -27,6 +27,14 @@ function searchTutors(searchTerm) {
   })
 }
 
+function getProfile(email) { 
+  let searchQuery = `http://${flaskURL}/users/${searchTerm}`;
+  $.get(searchQuery, function(data) { 
+    let user = data['user']
+    console.log(user);
+    
+  })
+}
 function searchItemExample(searchTerm) {
   let searchQuery = `http://api.nal.usda.gov/ndb/search/?format=json&q=${searchTerm}&sort=r&max=5&offset=0&api_key=${databasekey}`;
   $.get(searchQuery, function(data){
