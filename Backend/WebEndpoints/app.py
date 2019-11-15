@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import MetaData
 from flask import Flask, json, make_response
 from flask_cors import CORS
+import requests
 
 WEB_ENDPOINT_PORT = 5000
 
@@ -28,4 +29,8 @@ def get_tutors(classid):
     return app.response_class(response=json.dumps(data),status=200,mimetype='application/json')  
 
 if __name__ == '__main__':
+    # Fetch classes
+    classes = requests.get(url='http://127.0.0.1:5001/api/v1.0/courses/all/50000').json()
+    classes = map(lambda x: x['class_name'][:x['class_name'].index('-')+4], classes)
+    print('done:',list(classes))
     app.run(port=WEB_ENDPOINT_PORT)
