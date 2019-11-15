@@ -4,8 +4,14 @@
     <title>Event Creator</title>
   <style type="text/css">
       form { 
-        padding-top: 30px;
-
+        padding: 30px;
+        background: #fccf03;
+        margin: 20px;
+      }
+      body {
+        background: #2c68a8;
+        font: Helvetica;
+        font-size: 20px
       }
    </style>
   <!-- Code taken from https://github.com/nwcell/ics.js starts here -->
@@ -21,19 +27,19 @@
     function CreateEvent(){
       debugger;
       //take from form inputs
-       const locationa = document.forms["myForm"]["Loc"].value;
+        var locationa = document.forms["myForm"]["Loc"].value;
           if (Location == '') {
               location = 'Santa Cruz';
             }
-        const classa = document.forms["myForm"]["Class"].value;
-          if (Class == '') {
-              Class = 'N/A';
+        var classa = document.forms["myForm"]["Class"].value;
+          if (classa == '') {
+              classa = 'School';
             }
-        const Tname = document.forms["myForm"]["Tname"].value;
+        var Tname = document.forms["myForm"]["Tname"].value;
           if (Tname == '') {
               Tname = 'Tutor';
             }
-        const Sname = document.forms["myForm"]["Sname"].value;
+        var Sname = document.forms["myForm"]["Sname"].value;
           if (Sname == '') {
               Sname = 'Student';
             }
@@ -43,7 +49,7 @@
         const startDate = date + ' ' + start;
         const endDate = date + ' ' + end;
         const desc = 'Session between ' + Tname + ' and ' + Sname;
-        const name = 'A tutoring Session for' + classa;
+        const name = 'A tutoring Session for ' + classa;
         //create event
         cal.addEvent(desc, name, locationa, startDate, endDate);
         //download event
@@ -63,25 +69,19 @@
         //download event
         cal.download('Event');
       }
-      function showdate(){
-       console.log ("Test");
-        document.getElementById("1").innerHTML = document.forms["myForm"]["Day"].value;
-        document.getElementById("2").innerHTML = document.forms["myForm"]["Start"].value;
-        document.getElementById("3").innerHTML = document.forms["myForm"]["End"].value;
-      }
   </script>
   </head>
-  <center>
-    <form name="myForm" onSubmit="return MinimumEvent()">
-<!--       Tutor CruzID: <input type="text" id="Tname">Will put Tutor if empty<br>
-      Student CruzID: <input type="text" id="Sname">Will put Student if empty<br>
-      Location: <input type="text" id="Loc"> Will put Santa Cruz, CA if empty<br>
-      Class/Subject: <input type="text" id="Class">Will put N/A if empty<br> -->
-      Day: <input type="date" id="Day" required><br>
-      Start Time: <input type="time" id="Start" required><br>
-      End Time: <input type="time" id="End" required><br>
+  
+    <form name="myForm" onSubmit="return CreateEvent()">
+      Tutor CruzID: <input type="text" id="Tname">Will put "Tutor" if empty<br><br>
+      Student CruzID: <input type="text" id="Sname">Will put "Student" if empty<br><br>
+      Location: <input type="text" id="Loc"> Will put "Santa Cruz" if empty<br><br>
+      Class/Subject: <input type="text" id="Class">Will put "School" if empty<br><br>
+      Day: <input type="date" id="Day" required><br><br>
+      Start Time: <input type="time" id="Start" required><br><br>
+      End Time: <input type="time" id="End" required><br><br>
       <input type="submit" value="Create Event">
     </form>
-  </center>
+  
   </body>
 </html>
