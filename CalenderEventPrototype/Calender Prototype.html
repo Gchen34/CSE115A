@@ -17,25 +17,24 @@
   <!-- Code taken from https://github.com/nwcell/ics.js ends here -->
   <script type="text/javascript">
     var cal = ics();
-    // cal.addEvent('Best Day', 'This is the best day to demonstrate a single event.', 'New York', '11/12/1987', '11/12/1987');
-    // cal.download('Test');
     debugger;
-    function createEvent(){
+    function CreateEvent(){
       debugger;
-       const location = document.forms["myForm"]["Loc"].value;
-          if (Location == "") {
+      //take from form inputs
+       const locationa = document.forms["myForm"]["Loc"].value;
+          if (Location == '') {
               location = 'Santa Cruz';
             }
-        const Class = document.forms["myForm"]["Class"].value;
-          if (Class == "") {
+        const classa = document.forms["myForm"]["Class"].value;
+          if (Class == '') {
               Class = 'N/A';
             }
         const Tname = document.forms["myForm"]["Tname"].value;
-          if (Tname == "") {
+          if (Tname == '') {
               Tname = 'Tutor';
             }
         const Sname = document.forms["myForm"]["Sname"].value;
-          if (Sname == "") {
+          if (Sname == '') {
               Sname = 'Student';
             }
         const date = document.forms["myForm"]["Day"].value;
@@ -44,26 +43,25 @@
         const startDate = date + ' ' + start;
         const endDate = date + ' ' + end;
         const desc = 'Session between ' + Tname + ' and ' + Sname;
-        const name = 'A tutoring Session for' + Class;
-        cal.addEvent(desc, name, location, startDate, endDate);
+        const name = 'A tutoring Session for' + classa;
+        //create event
+        cal.addEvent(desc, name, locationa, startDate, endDate);
+        //download event
         cal.download(name);
-        // var Oname = Tname + ', ' + Sname + ', ' + location + ', ' +  start + '-' + end + ', ' + date;
-        // cal.download(Oname);
     }
       debugger;
       function MinimumEvent(){
         debugger;
+        //take from form inputs
         const date = document.forms["myForm"]["Day"].value;
         const start = document.forms["myForm"]["Start"].value;
         const end = document.forms["myForm"]["End"].value;
         const startDate = date + ' ' + start;
         const endDate = date + ' ' + end;
-        // const desc = 'Session between ' + Tname + ' and ' + Sname;
-        // const name = 'A tutoring Session for' + Class;
+        //create event
         cal.addEvent('Tutoring Session', 'A tutoring Session', 'Santa Cruz', startDate, endDate);
+        //download event
         cal.download('Event');
-      //   cal.addEvent('Best Day', 'This is the best day to demonstrate a single event.', 'New York', '11/12/1987', '11/12/1987');
-      //   cal.download('Test');
       }
       function showdate(){
        console.log ("Test");
@@ -73,21 +71,16 @@
       }
   </script>
   </head>
-  <!-- <center><<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FLos_Angeles&amp;src=azZ6aGFuZ0BnbWFpbC5jb20&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237986CB&amp;color=%23616161&amp;mode=WEEK" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe></center> -->
-  <!-- <div src="Customdis.js"></div> -->
   <center>
     <form name="myForm" onSubmit="return MinimumEvent()">
-      Tutor CruzID: <input type="text" id="Tname"><br>
-      Student CruzID: <input type="text" id="Sname"><br>
+<!--       Tutor CruzID: <input type="text" id="Tname">Will put Tutor if empty<br>
+      Student CruzID: <input type="text" id="Sname">Will put Student if empty<br>
       Location: <input type="text" id="Loc"> Will put Santa Cruz, CA if empty<br>
-      Class/Subject: <input type="text" id="Class">Will put N/A if empty<br>
+      Class/Subject: <input type="text" id="Class">Will put N/A if empty<br> -->
       Day: <input type="date" id="Day" required><br>
       Start Time: <input type="time" id="Start" required><br>
       End Time: <input type="time" id="End" required><br>
       <input type="submit" value="Create Event">
-      <p id="1"></p>
-      <p id="2"></p>
-      <p id="3"></p>
     </form>
   </center>
   </body>
