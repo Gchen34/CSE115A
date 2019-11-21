@@ -14,7 +14,7 @@ let ntCategories = `&nutrients=205&nutrients=204&nutrients=208&nutrients=269`;
 let flaskURL = `localhost:5000`;
 
 function searchTutors(searchTerm) {
-  let searchQuery = `http://${flaskURL}/tutors/${searchTerm}`;
+  let searchQuery = `http://${flaskURL}/api/tutors/${searchTerm}`;
 
   $.get(searchQuery, function(data) {
     if (data[`tutors`] === undefined) {
