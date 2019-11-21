@@ -12,3 +12,6 @@ An API server that interacts with UCSC's Pisa course website. It is used for ret
 
 ### WebEndpoints
 The API server that website users directly interact with. It will handle retrieving user data, tutoring information, and other information from our database.
+
+## Testing
+test_server.py contains tests to ensure proper functionality

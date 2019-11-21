@@ -8,6 +8,7 @@ import requests
 
 WEB_ENDPOINT_PORT = 5000
 COURSES = {}
+COURSES_OUTDATED = False
 
 app = Flask(__name__)
 CORS(app)
@@ -50,7 +51,9 @@ if __name__ == '__main__':
             COURSES[key] = course['class_name'][course['class_name'].index('-')+7:].replace('&amp;', 'and').replace('\u00a0', ' ')
     print(COURSES)
     print('Course list retrieved!')
-    enter_courses_into_db()
-    print('Course DB updated!')
+
+    if COURSES_OUTDATED:
+        enter_courses_into_db()
+        print('Course DB updated!')
 
     app.run(port=WEB_ENDPOINT_PORT)
