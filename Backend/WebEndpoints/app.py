@@ -31,7 +31,7 @@ def get_tutors(classid):
     return app.response_class(response=json.dumps(data),status=200,mimetype='application/json')  
 
 @app.route('/api/courses/all')
-def get_COURSES():
+def get_courses():
     return app.response_class(response=json.dumps(COURSES),status=200,mimetype='application/json')  
 
 def enter_courses_into_db():
