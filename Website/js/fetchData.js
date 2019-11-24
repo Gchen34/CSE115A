@@ -23,7 +23,24 @@ function searchTutors(searchTerm) {
     }
     let tutors = data[`tutors`]
     console.log(tutors);
-    $("#name").html(`<b> ${tutors[0][`name`]} <b>`);
+    $("#name").empty();
+    $("#name").append(`<b>Available Tutors</b>`);
+    
+    for(var i = 0; i < tutors.length; i ++){
+      $("#name").append(
+        `<div class = "column">
+        <div class="card" style="width:35%;height:35%;margin-left:0%;margin-right:30%;margin-top:10%; margin-bottom: 10%; text-align:center;">
+        <img src = "images/female.png" alt = "Avatar" style = "width:100%;margin-bottom: 10px">
+        <div class="container">
+        <h3>${tutors[i][`name`]}</h3>
+        <p>Request Me</p>
+        </div>
+        </div>
+        </div>
+        `
+      );
+    } 
+    //$("#name").html(`<b> ${tutors[0][`name`]} <b>`);
   })
 }
 
