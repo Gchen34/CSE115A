@@ -40,10 +40,18 @@ def enter_courses_into_db():
         db.add(cl)
     db.commit()
 
+@app.route('/api/users')
+def add_user(id, name, email):
+    data = {}
+    user = User(id = id, name = name, email = email)
+    db.query(User).add(user)
+    db.commit()
+
 if __name__ == '__main__':
     # Fetch COURSES
     print('Retrieving course list')
     resp = requests.get(url='http://127.0.0.1:5001/api/v1.0/courses/all/50000').json()
+    
     # Parse course data
     for course in resp:
         key = course['class_name'][:course['class_name'].index('-')-1].replace(' ','')
@@ -57,3 +65,4 @@ if __name__ == '__main__':
         print('Course DB updated!')
 
     app.run(port=WEB_ENDPOINT_PORT)
+
