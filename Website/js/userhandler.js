@@ -8,9 +8,6 @@ db.transaction(function (tx) {
     //tx.executeSql('CREATE TABLE IF NOT EXISTS nt (email unique, calories, sugar, fats, carbohydrates)')
     tx.executeSql('SELECT * FROM users', [], function (tx, results) {
         var len = results.rows.length, i;
-        for (i = 0; i < len; i++) {
-            console.log(results.rows.item(i));
-        }
     });
     console.log("user handler opened!")
 });
