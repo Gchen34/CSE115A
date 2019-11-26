@@ -1,0 +1,111 @@
+.navbar {
+    background-image: linear-gradient(120deg, #ffc3a0 0%, #ffafbd 100%);
+    border-bottom: 3px solid black;
+}
+
+.nav-brand {
+    font-size: 30px;
+    font-weight: bolder;
+    margin-left: -15px;
+}
+
+.btn-nav {
+    color: white;
+    background-color: black;
+    border-color: #003c6c;
+    border-width: 2px;
+    margin-left: 15px;
+}
+
+.btn-nav:hover{
+    background-color: #003c6c;
+    border-color: black;
+    color: white !important;
+}
+
+.navbar a:hover {
+    text-decoration: none;
+    color:black;
+}
+
+img {
+    margin-right: 15px;
+}
+
+html,body {
+    height: 100%;
+    background-color: white;
+}
+
+.bg  {
+    background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,1)),url("background.png");
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 65px;
+} 
+
+h2 {
+    font-weight: bolder;
+}
+
+a:hover {
+    color: #fdc700;
+}
+
+.btn-primary {
+    color: white;
+    background-color: purple;
+    border-color: #fdc700;
+}
+
+.btn-primary:hover{
+    color: black;
+    background-color: #fdc700;
+    border-color: black;
+}
+
+.btn-custom{
+  background: #723dbe;
+  border-color:#723dbe;
+  color:#fff;
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 48px;
+}
+.btn-custom:focus,
+.btn-custom:hover,
+.btn-custom:active,
+.btn-custom:active:focus{
+  background: #54229d;
+  border-color: #54229d;
+  color:#fff;
+}
+.btn-custom:focus{
+  box-shadow: 0 0 0 0.2rem rgba(114,61,190,.25);
+}
+
+.card {
+    border-color: black;
+    border-width: thick;
+    border-radius: 7px;
+}
+
+.card-body {
+    color: white;    
+    background-image: linear-gradient(120deg, #ffc3a0 0%, #ffafbd 100%);
+}
+
+.card-header {
+    background-image: linear-gradient(120deg, #ffc3a0 0%, #ffafbd 100%);
+}
+
+.form-control:focus{
+  border-color:#723dbe;
+  box-shadow: 0 0 0 0.2rem rgba(114,61,190,.25);
+}
+
+.link {
+    margin-top: 15px;
+}
