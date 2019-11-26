@@ -98,8 +98,12 @@ input[type=submit] {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: #fafafa;
   width: 60%;
-  height: 35%;
+  margin-top: 20%;
+  min-height: 35%;
+  max-height: 50%;
+  overflow: auto;
   border-radius: 8px;
+  display: inline-block;
 }
 
 .paperTextHeader {
