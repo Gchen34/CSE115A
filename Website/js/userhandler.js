@@ -96,38 +96,41 @@ function handleAuthChanges() {
     console.log("Sign in" + email)
   }
   
-  function handleSignUp() {
-    // const email= document.getElementById("email").value
-    // const pass = document.getElementById("password").value
+//   function handleSignUp() {
+//     // const email= document.getElementById("email").value
+//     // const pass = document.getElementById("password").value
 
-  }
+//   }
   
   window.onload = () => {
     handleAuthChanges()
   }
 
-  function addUser(name, email, password) {
-    firebase.auth().createUserWithEmailAndPassword(email,password).catch(function(error){
+  function addUser() {
+    console.log("here");
+    const email= document.getElementById("email").value
+    const pass = document.getElementById("password").value
+    firebase.auth().createUserWithEmailAndPassword(email,pass).catch(function(error){
         const errcode = error.code
         const errmsg = error.message
         alert(errmsg)
       });
+      console.log("Sign in" + email)
+    // firebase.auth().currentUser.getIdToken(true).then(function(idToken) { 
+    //     // Send token to your backend 
+    //     let addUser = `http://${flaskURL}/api/users/`;
+    //     var user1 = {
+    //         userId = idToken,
+    //         name = name,
+    //         email = email
+    //     }
+    //     $.post(addUser, user1, function(data) { 
+    //         $.post('./add_users')
+    //     })
 
-    firebase.auth().currentUser.getIdToken(true).then(function(idToken) { 
-        // Send token to your backend 
-        let addUser = `http://${flaskURL}/api/users/`;
-        var user1 = {
-            userId = idToken,
-            name = name,
-            email = email
-        }
-        $.post(addUser, user1, function(data) { 
-            $.post('./add_users')
-        })
+    // }).catch(function(error) { 
 
-    }).catch(function(error) { 
-
-    });
+    // });
 
 
 

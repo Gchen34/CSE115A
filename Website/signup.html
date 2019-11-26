@@ -10,12 +10,19 @@
         <link rel="stylesheet" type="text/css" href="./css/login.css">
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
-
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+        <script src='./js/firebase.js'>
+        
+            // const db = firebase.firestore();
+            // db.setting({timestampsInSnapshots: true});
+            // firebase.initializeApp(config);
+        </script>
         <!-- TODO: Add SDKs for Firebase products that you want to use
             https://firebase.google.com/docs/web/setup#available-libraries -->
         <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-analytics.js"></script>
 
-        <script>
+        <!-- <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
             apiKey: "AIzaSyBQJw05hYvnRrrEjlekhGsMy9_AV0c4ZUk",
@@ -30,12 +37,11 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
-        const db = firebase.firestore();
-            db.setting({timestampsInSnapshots: true});
-            firebase.initializeApp(config);
-        </script>
-        
-        <script src="app.js"> </script>
+
+        </script> -->
+<!--         
+        <script src="app.js"> </script> -->
+        <script src="./js/userhandler.js"></script>
 
         <title>Slug Study | Sign Up</title>
     </head>
@@ -69,17 +75,40 @@
                             <form method="post" autocomplete="on">
                                 <div class="row">
                                         <div class="form-group col-md-3">
-                                            <input type="text" class="form-control" id="firstName" placeholder="First name">
+                                            <input type="text" class="form-control" id="name" placeholder="name">
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <!-- <div class="form-group col-md-4">
                                             <input type="text" class="form-control" id="lastName" placeholder="Last name">
-                                        </div>
+                                        </div> -->
                                     </div>
                                 <!-- <div class="form-group">
                                         <label for="Name">Name</label>
                                         <input type="name" class="form-control form-control-lg"required="" id="name">
                                 </div> -->
+                                
+                                <div class="field">
+                                    <label class="label">Email</label>
+                                    <div class="control">
+                                      <input class="input" id="email" type="text" placeholder="Text input">
+                                    </div>
+                                  </div>
+                              
+                                  <div class="field">
+                                    <label class="label">Password</label>
+                                    <div class="control">
+                                      <input class="input" id="password" type="password" placeholder="password">
+                                      <h7 id="error" class="has-text-danger is-size-7"></h7>
+                                    </div>
+                                  </div>
+                                  <span class="control">
+                                    <button class="button is-primary" onclick="handleSignIn()">Sign In</button>
+                                  </span>
+                                  <span class="control">
+                                    <button class="button is-warning" onclick="addUser()">Sign Up</button>
+                                  </span>
+                                </div>
 
+<!--                                 
                                <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control form-control-lg"required="" id="email">
@@ -88,14 +117,14 @@
                                 <div class="form-group">
                                         <label for="email">Password</label>
                                         <input type="password" class="form-control form-control-lg" required="" id="pwd">
-                                </div>
+                                </div> -->
 
                                 <!-- <div class="form-group">
                                         <label for="email">Confirm Password:</label>
                                         <input type="password" class="form-control form-control-lg" required="" id="registerConfirmPassword">
                                 </div>  -->
 
-                                <button type="submit" class="btn btn-primary float-right">Sign Up</button>
+                                <button type="submit" class="btn btn-primary float-right" onclick="addUser()">Sign Up</button>
                            <!-- </form>
                             <div class="link"><a href="forgotAccount.html" target="_self">Forgot password?</a></div>
 
