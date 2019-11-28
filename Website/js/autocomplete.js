@@ -7,9 +7,13 @@ function autocomplete(inp, tempdata) {
     if (data === undefined) {
       return;
     }
-    console.log(data)
+    options = Object.keys(data)
+    for (i = 0; i < options.length; i++) {
+      options[i] += ": " + data[options[i]]
+    }
+    console.log(options)
     /*the autocomplete function takes two arguments,
-    the text field element and an dataay of possible autocompleted values:*/
+    the text field element and an optionsay of possible autocompleted values:*/
     var currentFocus;
     /*execute a function when someone writes in the text field:*/
     inp.addEventListener("input", function (e) {
@@ -24,17 +28,17 @@ function autocomplete(inp, tempdata) {
       a.setAttribute("class", "autocomplete-items");
       /*append the DIV element as a child of the autocomplete container:*/
       this.parentNode.appendChild(a);
-      /*for each item in the dataay...*/
-      for (i = 0; i < data.length; i++) {
+      /*for each item in the optionsay...*/
+      for (i = 0; i < options.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
-        if (data[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+        if (options[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
           /*create a DIV element for each matching element:*/
           b = document.createElement("DIV");
           /*make the matching letters bold:*/
-          b.innerHTML = "<strong>" + data[i].substr(0, val.length) + "</strong>";
-          b.innerHTML += data[i].substr(val.length);
-          /*insert a input field that will hold the current dataay item's value:*/
-          b.innerHTML += "<input type='hidden' value='" + data[i] + "'>";
+          b.innerHTML = "<strong>" + options[i].substr(0, val.length) + "</strong>";
+          b.innerHTML += options[i].substr(val.length);
+          /*insert a input field that will hold the current optionsay item's value:*/
+          b.innerHTML += "<input type='hidden' value='" + options[i] + "'>";
           /*execute a function when someone clicks on the item value (DIV element):*/
           b.addEventListener("click", function (e) {
             /*insert the value for the autocomplete text field:*/
@@ -52,13 +56,13 @@ function autocomplete(inp, tempdata) {
       var x = document.getElementById(this.id + "autocomplete-list");
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode == 40) {
-        /*If the dataow DOWN key is pressed,
+        /*If the optionsow DOWN key is pressed,
         increase the currentFocus variable:*/
         currentFocus++;
         /*and and make the current item more visible:*/
         addActive(x);
       } else if (e.keyCode == 38) { //up
-        /*If the dataow UP key is pressed,
+        /*If the optionsow UP key is pressed,
         decrease the currentFocus variable:*/
         currentFocus--;
         /*and and make the current item more visible:*/
