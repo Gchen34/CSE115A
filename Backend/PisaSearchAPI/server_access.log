@@ -139,3 +139,10 @@ Running the Open Courses API
 Running the Open Courses API
 Running the Open Courses API
 127.0.0.1 - - [26/Nov/2019 10:01:42] "GET /api/v1.0/courses/all/50000 HTTP/1.1" 200 -
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 255-471-355
+ * Running on http://127.0.0.1:5001/ (Press CTRL+C to quit)
+Running the Open Courses API
+Running the Open Courses API
+127.0.0.1 - - [28/Nov/2019 11:14:05] "GET /api/v1.0/courses/all/50000 HTTP/1.1" 200 -
