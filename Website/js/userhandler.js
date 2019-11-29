@@ -11,34 +11,59 @@ db.transaction(function (tx) {
     });
     console.log("user handler opened!")
 });
+  
+function handleAuthChanges() {
 
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        if(window.location = "signup.html"){
+            console.log("hi");
+        }
+        window.location = "search.html";
+      } else {
+        firebase.auth().signOut().then(function () {
+          // Sign-out successful.
+        }).catch(function (error) {
+          console.log(error)
+          alert("An error has occoured")
+        });
+      }
+    });
+  
+  }
 function addUser(name, email, password) {
+    firebase.auth().createUserWithEmailAndPassword(email,password).catch(function(error){
+        const errcode = error.code
+        const errmsg = error.message
+        alert(errmsg)
+    });
+    var flaskURL = `localhost:5000`;
+    var requestURL = `http://${flaskURL}/api/adduser`;
+    $.post(requestURL, {name: name, email: email});
+    
+    console.log("Sign in" + email)
+    
     console.log("name: " + name + "\nemail: " + email + "\npassword: " + password);
-    db.transaction(function (tx) {
-        tx.executeSql('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', [name, email, password]);
-        //tx.executeSql('INSERT INTO nt (email, 0, 0, 0, 0)');
-        console.log(`Added user ${name}`);
-    })
 }
 
 function authUser(email, password) {
-    //console.log("email: " + email + "\npassword: " + password);
-    db.transaction(function (tx) {
-        tx.executeSql(`SELECT * FROM users WHERE password =? AND email=?`, [password, email], function (tx, results) {
-            var len = results.rows.length, i;
-            //console.log(len)
-            if (len === 0) {
-                alert("User not found, please try again");
-            } else {
-                console.log(results.rows.item(0).name + " signed in");
-                localStorage.setItem('user', results.rows.item(0).email);
-                console.log(localStorage.getItem('user') + " is user")
-                window.location.href = "./home.html";
-            }
-        })
-    })
+    console.log("email: " + email + "\npassword: " + password);
+    firebase.auth().signInWithEmailAndPassword(email,password).catch(function(error){
+        const errcode = error.code;
+        const errmsg = error.message;
+        alert(errmsg);
+    });
+   
 }
 
+function signOutUser() {
+    firebase.auth().signOut().then(function() {
+    console.log('Signed Out');
+    }, function(error) {
+    console.error('Sign Out Error', error);
+    });
+    
+}
 function updateUser(calories = 0, sugar = 0, fats = 0, carbs = 0) {
     console.log("Values: " + calories + " " + sugar + " " + fats + " " + carbs + " " + localStorage.getItem('user'))
     db.transaction(function (tx) {
@@ -65,3 +90,7 @@ function setGreeting() {
         })
     });
 }
+
+window.onload = () => {
+    handleAuthChanges()
+  }
