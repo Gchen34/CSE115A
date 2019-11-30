@@ -22,7 +22,33 @@
         <title>Slug Study | Log in</title>
     </head>
 
-    <nav class="navbar navbar-expand-sm fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark rightBar" style="background-color:none;">
+            <a class="navbar-brand" href="#">SlugStudy</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto">
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li> -->
+                <li class="nav-item active">
+                  <a class="nav-link" href="search.html">Browse</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="search.html">Study</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="login.html">Log In</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="signup.html">Sign Up</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+    <!-- <nav class="navbar navbar-expand-sm fixed-top">
         <div class="container-fluid">    
             <div class="navbar-header">
                 <a class="nav-brand" href="index.html"><img src="./images/slug study.png" width="50" height="50" alt="Slug Icon">Slug Study</a>
@@ -30,14 +56,14 @@
             
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="btn btn-nav" href="login.html" role="button">Log In</a>
+                    <a class="btn btn-nav" href="./login.html" role="button">Log In</a>
                 </li>
                 <li>
                     <a class="btn btn-nav" href="./signup.html" role="button">Sign Up</a>
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 
     <div class="bg">    
         <div class="container h-100">
@@ -58,7 +84,7 @@
                                         <label for="email">Password</label>
                                         <input type="password" class="form-control form-control-lg" required="" id="pwd">
                                 </div> 
-                                <button type="submit" class="btn btn-primary float-right">Log in</button>
+                                <button type="submit" class="btn btn-primary float-right" onclick="handleSignIn()">Log in</button>
                            </form>
                             <div class="link"><a href="https://forms.gle/vChpiRcfUXqqXYUb8" target="_self">Forgot password?</a></div>
 

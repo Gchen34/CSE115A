@@ -22,7 +22,7 @@ db = DBSession()
 @app.route('/api/tutors/<classid>', methods=['GET'])
 def get_tutors(classid):
     data = {}
-    tutors = db.query(Tutor).filter_by(class_id ='CSE128').all()
+    tutors = db.query(Tutor).filter_by(class_id ='pip').all()
     print(tutors)
     tutor_dict = []
     for tutor in tutors:
@@ -33,6 +33,16 @@ def get_tutors(classid):
 @app.route('/api/courses/all')
 def get_courses():
     return app.response_class(response=json.dumps(COURSES),status=200,mimetype='application/json')  
+
+def enter_courses_into_db():
+    for id, name in COURSES.items():
+        cl = Class(id=id, name=name)
+        db.add(cl)
+    db.commit()
+
+@app.route('/api/users/all')
+def get_users():
+    return app.response_class(response=json.dumps(USERS),status=200,mimetype='application/json')  
 
 def enter_courses_into_db():
     for id, name in COURSES.items():
