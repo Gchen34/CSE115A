@@ -2,6 +2,7 @@ from model import User, Class, Tutor, Registered, Tutoring, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import MetaData
+from flask import Flask, request, Response, abort, jsonify, json
 from flask import Flask, json, make_response
 from flask_cors import CORS
 import requests
@@ -33,6 +34,15 @@ def get_tutors(classid):
 @app.route('/api/courses/all')
 def get_courses():
     return app.response_class(response=json.dumps(COURSES),status=200,mimetype='application/json')  
+
+@app.route('/api/adduser',methods = ['POST'])
+def adduser():
+    email = request.form['email']
+    name = request.form['name']
+    new_user = User(id = email, name = name,email = email)
+    db.add(new_user)
+    db.commit()
+    return app.response_class(status=200)
 
 def enter_courses_into_db():
     for id, name in COURSES.items():

@@ -48,7 +48,7 @@ function getProfile(email) {
   let searchQuery = `http://${flaskURL}/users/${searchTerm}`;
   $.get(searchQuery, function(data) { 
     let user = data['user']
-    console.log(user);
+    // console.log(user);
     
   })
 }
