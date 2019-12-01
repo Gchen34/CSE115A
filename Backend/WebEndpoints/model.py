@@ -7,16 +7,16 @@ Base = declarative_base()
 
 class User(Base):
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
+    id = Column(String(120), primary_key=True)
     name = Column(String(50))
-    email = Column(String(120), unique=True)
+    email = Column(String(120))
     def __repr__(self):
         return "<User(name='%s', email='%s')>" % (
                                 self.name, self.email)
 
 class Class(Base):
     __tablename__ = 'classes'
-    id = Column(String(10), primary_key=True)
+    id = Column(String(120), primary_key=True)
     name = Column(String(10))
     def __repr__(self):
         return "<Class(name='%s')>" % (
@@ -25,15 +25,15 @@ class Class(Base):
 
 class Tutor(Base):
     __tablename__ = 'tutor'
-    id = Column(Integer, primary_key = True)
-    name = Column(String(10))
+    id = Column(String(120), primary_key = True)
+    name = Column(String(50))
     class_id = Column(String(10))
     def __repr__(self):
         return "<Tutor(name='%s', class_id='%s')>" % (
                                 self.name, self.class_id)
 class Registered(Base):
     __tablename__ = 'registered'
-    student_id = Column(Integer, primary_key = True)
+    student_id = Column(String(120), primary_key = True)
     class_id = Column(Integer, primary_key = True)
     def __repr__(self):
         return "<Registered(student_id='%s', class_id='%s')>" % (
@@ -41,8 +41,8 @@ class Registered(Base):
 
 class Tutoring(Base):
     __tablename__ = 'tutoring'
-    student_id = Column(Integer)
-    tutor_id = Column(Integer, primary_key = True)
+    student_id = Column(String(120))
+    tutor_id = Column(String(120), primary_key = True)
     class_id = Column(Integer, primary_key = True)
     def __repr__(self):
         return "<Tutoring(student_id='%s', tutor_id='%s', class_id='%s')>" % (
