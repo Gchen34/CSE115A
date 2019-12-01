@@ -12,25 +12,6 @@ db.transaction(function (tx) {
     console.log("user handler opened!")
 });
   
-function handleAuthChanges() {
-
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        if(window.location = "signup.html"){
-            console.log("hi");
-        }
-        window.location = "search.html";
-      } else {
-        firebase.auth().signOut().then(function () {
-          // Sign-out successful.
-        }).catch(function (error) {
-          console.log(error)
-          alert("An error has occoured")
-        });
-      }
-    });
-  
-  }
 function addUser(name, email, password) {
     firebase.auth().createUserWithEmailAndPassword(email,password).catch(function(error){
         const errcode = error.code
@@ -90,7 +71,3 @@ function setGreeting() {
         })
     });
 }
-
-window.onload = () => {
-    handleAuthChanges()
-  }
