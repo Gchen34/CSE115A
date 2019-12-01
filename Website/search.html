@@ -16,6 +16,9 @@
     crossorigin="anonymous"></script>
   <script type="text/JavaScript" src="./js/fetchData.js"></script>
   <script type="text/JavaScript" src="./js/autocomplete.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.0.1/firebase-auth.js"></script>
+  <script src="./js/firebase.js"></script>
   <script src="./js/userhandler.js"></script>
 </head>
 <style>
@@ -50,6 +53,9 @@
         <li class="nav-item">
           <a class="nav-link" href="signup.html">Sign Up</a>
         </li>
+        <li class = "nav-item">
+          <a class = "nav-link" onclick = "signOutUser()" href = "login.html"> Sign Out</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -76,7 +82,7 @@
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script>
     setGreeting();
-    autocomplete(document.getElementById("searchField"), ['CSE115A', 'CSE128', 'CSE140', 'CSE180']);
+    autocomplete(document.getElementById("searchField"), []);
   </script>
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script> -->
