@@ -15,7 +15,7 @@ let flaskURL = `localhost:5000`;
 
 function searchTutors(searchTerm) {
   let searchQuery = `http://${flaskURL}/api/tutors/${searchTerm}`;
-
+  searchTerm = searchTerm.split(":")[0];
   $.get(searchQuery, function(data) {
     if (data[`tutors`] === undefined) {
       $(name).html(`<b>No tutor found for class: ${searchTerm}<b>`)
