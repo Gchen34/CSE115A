@@ -23,11 +23,7 @@ db = DBSession()
 @app.route('/api/tutors/<classid>', methods=['GET'])
 def get_tutors(classid):
     data = {}
-<<<<<<< HEAD
-    tutors = db.query(Tutor).filter_by(class_id ='pip').all()
-=======
     tutors = db.query(Tutor).filter_by(class_id = classid).all()
->>>>>>> 34a89be16dde353ebb55d31ee3f842105f3c4c24
     print(tutors)
     tutor_dict = []
     for tutor in tutors:
