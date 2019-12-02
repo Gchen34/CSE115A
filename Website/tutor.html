@@ -202,32 +202,24 @@
   <div class="container">
     <div class="form-row align-items-center">
       <div class="col">
-        <div class="card" style="width:35%;height:140%;margin-left:30%;margin-right:30%;margin-top:10%;text-align:center">
+        <div class="card" style="width:35%;height:140%;margin-left:30%;margin-right:30%;margin-top:10%;text-align:center; overflow-y:scroll;">
           <h1>Tutor</h1>
           <div class="container" >
             <form autocomplete="off">
-              <div class="form-group" id = "listofclasses" style ="text-align:left; overflow:auto">
+            <div class="form-group">
+
+                    <div class="left-addon inner-addon">
+                        <i class="fa fa-filter fa-gradient"></i>
+                        <input style="border-top:0px;border-right:0px;border-left:0px" type="text" class="form-control" id="filter"
+                        aria-describedby="emailHelp" placeholder="Filter">
+                    </div>
+    
+    
+            </div>
+              <div class="form-group" id = "listofclasses" style ="text-align:left;">
 
               </div>
-              <div class="form-group">
-
-                <div class="left-addon inner-addon">
-                  <i class="fa fa-envelope fa-gradient"></i>
-                  <input style="border-top:0px;border-right:0px;border-left:0px" type="email" class="form-control" id="signUpEmail"
-                    aria-describedby="emailHelp" placeholder="Enter email">
-                </div>
-
-
-              </div>
-              <div class="form-group">
-
-                <div class="left-addon inner-addon">
-                  <i class="fa fa-lock fa-gradient"></i>
-                  <input type="password" style="border-top:0px;border-right:0px;border-left:0px" class="form-control"
-                    id="signUpPassword" placeholder="Password">
-                </div>
-
-              </div>
+           
             </form>
             <div class="btn-group">
               <button class="button" onclick="addUser($('#displayName').val(),$('#signUpEmail').val(),$('#signUpPassword').val());"
