@@ -128,14 +128,54 @@ function clicking(clicked_id) {
       return false;
   }
 }
-function getProfile(email) { 
-  let searchQuery = `http://${flaskURL}/users/${searchTerm}`;
-  $.get(searchQuery, function(data) { 
-    let user = data['user']
-    // console.log(user);
-    
-  })
+function getProfile() {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      var user_email = user.email;
+      let searchQuery = `http://${flaskURL}/api/user/${user_email}`;
+      $.get(searchQuery, function(data) { 
+        console.log(data);
+        let user = data['user']
+        // console.log(user);
+        
+      })
+    } else {
+      // No user is signed in.
+    }
+  });
 }
+function clicking(clicked_id) {
+  //console.log(tutor);
+  if (confirm('Clicking OK will send a tutor an email')) {
+    var tutor_name = $(`#${clicked_id}`).data("name");
+    var tutor_email = $(`#${clicked_id}`).data("email");
+    var class_name = $(`#${clicked_id}`).data("class");
+    var currentuser =   model.firebase.auth().currentUser;
+    var user_email = currentuser.email;
+    var user_name;
+    var searchQuery = `http://${flaskURL}/api/user/${user_email}`;
+    $.get(searchQuery, function(data) {
+      console.log(data);
+      user_name = data.name;
+      searchQuery = `http://${flaskURL}/api/sendNotification`;
+      $.post(searchQuery, 
+        { receiver_email: tutor_email, 
+          receiver_name: tutor_name,
+          student_email: user_email,
+          student_name: user_name,
+          class_name: class_name
+        });  
+    });
+  
+
+
+
+  } else {
+      return false;
+  }
+}
+
 function searchItemExample(searchTerm) {
   let searchQuery = `http://api.nal.usda.gov/ndb/search/?format=json&q=${searchTerm}&sort=r&max=5&offset=0&api_key=${databasekey}`;
   $.get(searchQuery, function(data){
