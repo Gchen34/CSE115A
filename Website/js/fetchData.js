@@ -14,8 +14,9 @@ let ntCategories = `&nutrients=205&nutrients=204&nutrients=208&nutrients=269`;
 let flaskURL = `localhost:5000`;
 
 function searchTutors(searchTerm) {
-  let searchQuery = `http://${flaskURL}/api/tutors/${searchTerm}`;
   searchTerm = searchTerm.split(":")[0];
+  let searchQuery = `http://${flaskURL}/api/tutors/${searchTerm}`;
+
   $.get(searchQuery, function(data) {
     if (data[`tutors`] === undefined) {
       $(name).html(`<b>No tutor found for class: ${searchTerm}<b>`)
@@ -66,7 +67,7 @@ function loadCheckBoxes(filter=undefined) {
     for(var i = 0; i < options.length; i++){
       var classOptionHtml = 
         `<div class="checkbox">
-        <label><input type="checkbox" name = "checkboxlist">  ${options[i]}</label>
+        <label><input type="checkbox" name = "checkboxlist">${options[i]}</label>
         </div>`
       if (filter == undefined || options[i].startsWith(filter)) {
         $("#listofclasses").append(classOptionHtml)
@@ -87,13 +88,13 @@ function addTutor() {
       console.log(data);
       user_name = data.name;
       searchQuery = `http://${flaskURL}/api/addtutor`;
-      for(var i = 0; i < checkValues.length; i++){
-        $.post(searchQuery, 
-          { id: user_email, 
-            name: user_name,
-            class_id: checkValues[i]
-          }); 
-      }
+   
+      $.post(searchQuery, 
+        { id: user_email, 
+          name: user_name,
+          class_id: JSON.stringify(checkValues)
+        }); 
+      
   
     });
     //do something with your checkValues array
@@ -106,7 +107,7 @@ function clicking(clicked_id) {
     var tutor_name = $(`#${clicked_id}`).data("name");
     var tutor_email = $(`#${clicked_id}`).data("email");
     var class_name = $(`#${clicked_id}`).data("class");
-    var currentuser =   model.firebase.auth().currentUser;
+    var currentuser = firebase.auth().currentUser;
     var user_email = currentuser.email;
     var user_name;
     var searchQuery = `http://${flaskURL}/api/user/${user_email}`;
