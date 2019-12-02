@@ -9,7 +9,7 @@ import requests
 from notify import sendNotification
 WEB_ENDPOINT_PORT = 5000
 COURSES = {}
-COURSES_OUTDATED = False
+COURSES_OUTDATED = True
 
 app = Flask(__name__)
 CORS(app)
