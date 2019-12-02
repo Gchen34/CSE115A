@@ -66,12 +66,38 @@ function loadCheckBoxes() {
 
       $("#listofclasses").append(
         `<div class="checkbox">
-        <label><input type="checkbox" value="">  ${options[i]}</label>
+        <label><input type="checkbox" name = "checkboxlist">  ${options[i]}</label>
         </div>`
       )
     }
   });
 }
+
+
+function addTutor() {
+  var checkValues = $('input[name=checkboxlist]:checked').map(function() {
+        return $(this).parent().text();
+    }).get();
+  var user_email = firebase.auth().currentUser.email;
+  var user_name;
+  var searchQuery = `http://${flaskURL}/api/user/${user_email}`;
+    $.get(searchQuery, function(data) {
+      console.log(data);
+      user_name = data.name;
+      searchQuery = `http://${flaskURL}/api/addtutor`;
+      for(var i = 0; i < checkValues.length; i++){
+        $.post(searchQuery, 
+          { id: user_email, 
+            name: user_name,
+            class_id: checkValues[i]
+          }); 
+      }
+  
+    });
+    //do something with your checkValues array
+}
+
+
 function clicking(clicked_id) {
   //console.log(tutor);
   if (confirm('Clicking OK will send a tutor an email')) {
