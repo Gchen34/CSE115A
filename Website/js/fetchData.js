@@ -13,6 +13,47 @@ let dbnum = `01009`;
 let ntCategories = `&nutrients=205&nutrients=204&nutrients=208&nutrients=269`;
 let flaskURL = `localhost:5000`;
 
+function searchTutors(searchTerm) {
+  let searchQuery = `http://${flaskURL}/api/tutors/${searchTerm}`;
+
+  $.get(searchQuery, function(data) {
+    if (data[`tutors`] === undefined) {
+      $(name).html(`<b>No tutor found for class: ${searchTerm}<b>`)
+      return;
+    }
+    let tutors = data[`tutors`]
+    console.log(tutors);
+    $("#name").empty();
+    $("#name").append(`<b>Available Tutors</b>`);
+    
+    for(var i = 0; i < tutors.length; i ++){
+      var name = tutors[i].name.replace(" ","-")
+      $("#name").append(
+        `<div class = "column">
+        <div class="card" style="width:35%;height:35%;margin-left:0%;margin-right:30%;margin-top:10%; margin-bottom: 10%; text-align:center;">
+        <img src = "images/female.png" alt = "Avatar" style = "width:100%;margin-bottom: 10px">
+        <div class="container">
+        <h3>${tutors[i][`name`]}</h3>
+        <button id = "${name}" style = "background-color: inherit; color: gray-dark; border: None;" onclick = "clicking(this.id)">Request Me</button>
+        </div>
+        </div>
+        </div>
+        `
+      );
+      $(`#${name}`).data("name", tutors[i][`name`]);
+      $(`#${name}`).data("email", tutors[i][`email`]);
+      $(`#${name}`).data("class", searchTerm);
+      /*
+      $("#Priya Rajarathinam").data('tutor_info',{
+        name: tutors[i][`name`],
+        email: tutors[i][`email`]
+      });
+      */
+      console.log();
+    } 
+    //$("#name").html(`<b> ${tutors[0][`name`]} <b>`);
+  })
+}
 function loadCheckBoxes(filter=undefined) {
   let searchQuery = `http://${flaskURL}/api/courses/all`;
 
@@ -25,7 +66,7 @@ function loadCheckBoxes(filter=undefined) {
     for(var i = 0; i < options.length; i++){
       var classOptionHtml = 
         `<div class="checkbox">
-        <label><input type="checkbox" value="">  ${options[i]}</label>
+        <label><input type="checkbox" name = "checkboxlist">  ${options[i]}</label>
         </div>`
       if (filter == undefined || options[i].startsWith(filter)) {
         $("#listofclasses").append(classOptionHtml)
@@ -33,6 +74,31 @@ function loadCheckBoxes(filter=undefined) {
     }
   });
 }
+
+
+function addTutor() {
+  var checkValues = $('input[name=checkboxlist]:checked').map(function() {
+        return $(this).parent().text();
+    }).get();
+  var user_email = firebase.auth().currentUser.email;
+  var user_name;
+  var searchQuery = `http://${flaskURL}/api/user/${user_email}`;
+    $.get(searchQuery, function(data) {
+      console.log(data);
+      user_name = data.name;
+      searchQuery = `http://${flaskURL}/api/addtutor`;
+      for(var i = 0; i < checkValues.length; i++){
+        $.post(searchQuery, 
+          { id: user_email, 
+            name: user_name,
+            class_id: checkValues[i]
+          }); 
+      }
+  
+    });
+    //do something with your checkValues array
+}
+
 
 function clicking(clicked_id) {
   //console.log(tutor);
@@ -57,7 +123,7 @@ function clicking(clicked_id) {
         });  
     });
   } else {
-    return false;
+      return false;
   }
 }
 
