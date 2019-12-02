@@ -27,15 +27,7 @@ def get_tutors(classid):
     print(tutors)
     tutor_dict = []
     for tutor in tutors:
-<<<<<<< HEAD
-<<<<<<< HEAD
         tutor_dict.append({"name":tutor.name, "email":tutor.email})
-=======
-        tutor_dict.append({"name":tutor.name, "email":tutor.id})
->>>>>>> 67356d07be8cb1e1030e7660473b473349848ef6
-=======
-        tutor_dict.append({"name":tutor.name, "email":tutor.email})
->>>>>>> f7334bda0aff269f3ff9794916c613927b478c0d
     data["tutors"] = tutor_dict 
     return app.response_class(response=json.dumps(data),status=200,mimetype='application/json')  
 @app.route('/api/addtutor', methods = ['POST'])
@@ -61,15 +53,7 @@ def add_user():
     return app.response_class(status=200)
 
 @app.route('/api/user/<userid>', methods = ['GET'])
-<<<<<<< HEAD
-<<<<<<< HEAD
 def get_User(userid):
-=======
-def getUser(userid):
->>>>>>> 67356d07be8cb1e1030e7660473b473349848ef6
-=======
-def get_User(userid):
->>>>>>> f7334bda0aff269f3ff9794916c613927b478c0d
     print(userid)
     user = db.query(User).filter_by(id = userid).all()
     print(user)
@@ -80,15 +64,7 @@ def get_User(userid):
     return app.response_class(response=json.dumps(user_dict),status=200,mimetype='application/json')
 
 @app.route('/api/sendNotification', methods = ['POST'])
-<<<<<<< HEAD
-<<<<<<< HEAD
 def send_Email():
-=======
-def sendEmail():
->>>>>>> 67356d07be8cb1e1030e7660473b473349848ef6
-=======
-def send_Email():
->>>>>>> f7334bda0aff269f3ff9794916c613927b478c0d
     print("in send email")
     receiver_email = request.form['receiver_email']
     receiver_name = request.form['receiver_name']
