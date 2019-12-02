@@ -54,7 +54,7 @@ function searchTutors(searchTerm) {
     //$("#name").html(`<b> ${tutors[0][`name`]} <b>`);
   })
 }
-function loadCheckBoxes() {
+function loadCheckBoxes(filter=undefined) {
   let searchQuery = `http://${flaskURL}/api/courses/all`;
 
   $.get(searchQuery).then(function (data) {
@@ -62,13 +62,15 @@ function loadCheckBoxes() {
       return;
     }
     options = Object.keys(data);
+    $("#listofclasses").empty()
     for(var i = 0; i < options.length; i++){
-
-      $("#listofclasses").append(
+      var classOptionHtml = 
         `<div class="checkbox">
         <label><input type="checkbox" value="">  ${options[i]}</label>
         </div>`
-      )
+      if (filter == undefined || options[i].startsWith(filter)) {
+        $("#listofclasses").append(classOptionHtml)
+      }
     }
   });
 }

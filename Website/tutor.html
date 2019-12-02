@@ -183,16 +183,10 @@
           <a class="nav-link" href="search.html">Search</a>
         </li>
         <li class="nav-item">
-        <li class="nav-item">
-          <a class="nav-link" href="home.html">Charts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="recipe.html">Recipe Generator</a>
-        </li>
         <a class="nav-link" href="login.html">Login</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="signup.html">Sign Up</a>
+        <li class="nav-item">
+          <a class="nav-link active" href="signup.html">Sign Up</a>
         </li>
 
       </ul>
@@ -202,17 +196,17 @@
   <div class="container">
     <div class="form-row align-items-center">
       <div class="col">
-        <div class="card" style="width:35%;height:140%;margin-left:30%;margin-right:30%;margin-top:10%;text-align:center; overflow-y:scroll;">
+        <div class="card" style="width:35%;height:140%;margin-left:30%;margin-right:30%;margin-top:10%;text-align:center;">
           <h1>Tutor</h1>
           <div class="container" >
             <form autocomplete="off">
             <div class="form-group">
 
-                    <div class="left-addon inner-addon">
-                        <i class="fa fa-filter fa-gradient"></i>
-                        <input style="border-top:0px;border-right:0px;border-left:0px" type="text" class="form-control" id="filter"
-                        aria-describedby="emailHelp" placeholder="Filter">
-                    </div>
+              <div class="left-addon inner-addon">
+                  <i class="fa fa-filter fa-gradient"></i>
+                  <input style="border-top:0px;border-right:0px;border-left:0px" type="text" class="form-control" id="filter"
+                  aria-describedby="emailHelp" placeholder="Filter" onkeyup="loadCheckBoxes(document.getElementById('filter').value.toUpperCase())">
+              </div>
     
     
             </div>
