@@ -27,23 +27,63 @@ function searchTutors(searchTerm) {
     $("#name").append(`<b>Available Tutors</b>`);
     
     for(var i = 0; i < tutors.length; i ++){
+      var name = tutors[i].name.replace(" ","-")
       $("#name").append(
         `<div class = "column">
         <div class="card" style="width:35%;height:35%;margin-left:0%;margin-right:30%;margin-top:10%; margin-bottom: 10%; text-align:center;">
         <img src = "images/female.png" alt = "Avatar" style = "width:100%;margin-bottom: 10px">
         <div class="container">
         <h3>${tutors[i][`name`]}</h3>
-        <p>Request Me</p>
+        <button id = "${name}" style = "background-color: inherit; color: gray-dark; border: None;" onclick = "clicking(this.id)">Request Me</button>
         </div>
         </div>
         </div>
         `
       );
+      $(`#${name}`).data("name", tutors[i][`name`]);
+      $(`#${name}`).data("email", tutors[i][`email`]);
+      $(`#${name}`).data("class", searchTerm);
+      /*
+      $("#Priya Rajarathinam").data('tutor_info',{
+        name: tutors[i][`name`],
+        email: tutors[i][`email`]
+      });
+      */
+      console.log();
     } 
     //$("#name").html(`<b> ${tutors[0][`name`]} <b>`);
   })
 }
+function clicking(clicked_id) {
+  //console.log(tutor);
+  if (confirm('Clicking OK will send a tutor an email')) {
+    var tutor_name = $(`#${clicked_id}`).data("name");
+    var tutor_email = $(`#${clicked_id}`).data("email");
+    var class_name = $(`#${clicked_id}`).data("class");
+    var currentuser = firebase.auth().currentUser;
+    var user_email = currentuser.email;
+    var user_name;
+    var searchQuery = `http://${flaskURL}/api/user/${user_email}`;
+    $.get(searchQuery, function(data) {
+      console.log(data);
+      user_name = data.name;
+      searchQuery = `http://${flaskURL}/api/sendNotification`;
+      $.post(searchQuery, 
+        { receiver_email: tutor_email, 
+          receiver_name: tutor_name,
+          student_email: user_email,
+          student_name: user_name,
+          class_name: class_name
+        });  
+    });
+  
 
+
+
+  } else {
+      return false;
+  }
+}
 function getProfile(email) { 
   let searchQuery = `http://${flaskURL}/users/${searchTerm}`;
   $.get(searchQuery, function(data) { 

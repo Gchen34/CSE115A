@@ -6,7 +6,7 @@ from flask import Flask, request, Response, abort, jsonify, json
 from flask import Flask, json, make_response
 from flask_cors import CORS
 import requests
-
+from notify import sendNotification
 WEB_ENDPOINT_PORT = 5000
 COURSES = {}
 COURSES_OUTDATED = False
@@ -23,11 +23,11 @@ db = DBSession()
 @app.route('/api/tutors/<classid>', methods=['GET'])
 def get_tutors(classid):
     data = {}
-    tutors = db.query(Tutor).filter_by(class_id ='CSE128').all()
+    tutors = db.query(Tutor).filter_by(class_id = classid).all()
     print(tutors)
     tutor_dict = []
     for tutor in tutors:
-        tutor_dict.append({"name":tutor.name})
+        tutor_dict.append({"name":tutor.name, "email":tutor.id})
     data["tutors"] = tutor_dict 
     return app.response_class(response=json.dumps(data),status=200,mimetype='application/json')  
 
@@ -42,6 +42,29 @@ def adduser():
     new_user = User(id = email, name = name,email = email)
     db.add(new_user)
     db.commit()
+    return app.response_class(status=200)
+
+@app.route('/api/user/<userid>', methods = ['GET'])
+def getUser(userid):
+    print(userid)
+    user = db.query(User).filter_by(id = userid).all()
+    print(user)
+    print(userid)
+    user_dict = {}
+    user_dict['name'] = user[0].name
+    user_dict['email'] = user[0].email
+    return app.response_class(response=json.dumps(user_dict),status=200,mimetype='application/json')
+
+@app.route('/api/sendNotification', methods = ['POST'])
+def sendEmail():
+    print("in send email")
+    receiver_email = request.form['receiver_email']
+    receiver_name = request.form['receiver_name']
+    student_email = request.form['student_email']
+    student_name = request.form['student_name']
+    class_name = request.form['class_name']
+    print(request.form)
+    sendNotification(receiver_email,student_email,student_name,receiver_name, class_name)
     return app.response_class(status=200)
 
 def enter_courses_into_db():

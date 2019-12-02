@@ -11,7 +11,7 @@ class User(Base):
     name = Column(String(50))
     email = Column(String(120))
     def __repr__(self):
-        return "<User(name='%s', fullname='%s')>" % (
+        return "<User(name='%s', email='%s')>" % (
                                 self.name, self.email)
 
 class Class(Base):
