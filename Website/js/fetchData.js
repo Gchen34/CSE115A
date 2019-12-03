@@ -44,6 +44,7 @@ function searchTutors(searchTerm) {
       $(`#${name}`).data("name", tutors[i][`name`]);
       $(`#${name}`).data("email", tutors[i][`email`]);
       $(`#${name}`).data("class", searchTerm);
+      
       /*
       $("#Priya Rajarathinam").data('tutor_info',{
         name: tutors[i][`name`],
