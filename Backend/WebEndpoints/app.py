@@ -66,8 +66,6 @@ def add_user():
 def get_User(userid):
     print(userid)
     user = db.query(User).filter_by(id = userid).all()
-    print(user)
-    print(userid)
     user_dict = {}
     user_dict['name'] = user[0].name
     user_dict['email'] = user[0].email
