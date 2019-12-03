@@ -54,6 +54,7 @@ function searchTutors(searchTerm) {
     //$("#name").html(`<b> ${tutors[0][`name`]} <b>`);
   })
 }
+
 function clicking(clicked_id) {
   //console.log(tutor);
   if (confirm('Clicking OK will send a tutor an email')) {
@@ -76,16 +77,12 @@ function clicking(clicked_id) {
           class_name: class_name
         });  
     });
-  
-
-
-
   } else {
       return false;
   }
 }
 
-
+// This function gets the profile of the user 
 function getProfile() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -93,17 +90,19 @@ function getProfile() {
       var user_email = user.email;
       let searchQuery = `http://${flaskURL}/api/user/${user_email}`;
       $.get(searchQuery, function(data) { 
-        console.log(data);
-        let user = data['user']
-        // console.log(user);
-        
+        console.log("this is data", data);
+        let userName = data.name;
+        let userEmail = data.email;
+        $(".name").append("<b>"+ "&nbsp;"+ userName+"</b>");
+        $(".email").append("<b>"+ "&nbsp;"+ userEmail+"</b>");
+        console.log("this is the user's email", user);
       })
     } else {
       // No user is signed in.
     }
   });
-
 }
+
 function searchItemExample(searchTerm) {
   let searchQuery = `http://api.nal.usda.gov/ndb/search/?format=json&q=${searchTerm}&sort=r&max=5&offset=0&api_key=${databasekey}`;
   $.get(searchQuery, function(data){
