@@ -101,7 +101,6 @@ function addTutor() {
     //do something with your checkValues array
 }
 
-
 function clicking(clicked_id) {
   //console.log(tutor);
   if (confirm('Clicking OK will send a tutor an email')) {
@@ -129,7 +128,7 @@ function clicking(clicked_id) {
   }
 }
 
-
+// This function gets the profile of the user 
 function getProfile() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -137,17 +136,19 @@ function getProfile() {
       var user_email = user.email;
       let searchQuery = `http://${flaskURL}/api/user/${user_email}`;
       $.get(searchQuery, function(data) { 
-        console.log(data);
-        let user = data['user']
-        // console.log(user);
-        
+        console.log("this is data", data);
+        let userName = data.name;
+        let userEmail = data.email;
+        $(".name").append("<b>"+ "&nbsp;"+ userName+"</b>");
+        $(".email").append("<b>"+ "&nbsp;"+ userEmail+"</b>");
+        console.log("this is the user's email", user);
       })
     } else {
       // No user is signed in.
     }
   });
-
 }
+
 
 function formatTitle(text) {  //Removes UPC and formats capitalization
   return text.toLowerCase()
