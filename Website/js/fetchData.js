@@ -148,22 +148,6 @@ function getProfile() {
   });
 
 }
-function searchItemExample(searchTerm) {
-  let searchQuery = `http://api.nal.usda.gov/ndb/search/?format=json&q=${searchTerm}&sort=r&max=5&offset=0&api_key=${databasekey}`;
-  $.get(searchQuery, function(data){
-    let selectIndex = 0;
-    let selectedItem = data.list.item[selectIndex];
-    console.log(`Database entry: ` + selectedItem.name);
-    let nutritionQuery = `https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=${databasekey}${ntCategories}&ndbno=${selectedItem.ndbno}`;
-    $.get(nutritionQuery, function(data) {
-      $(foodName).html(`<b>Nutritional Data for ` + formatTitle(selectedItem.name) + `<b>`);
-      data.report.foods[0].nutrients.forEach((e) => {
-        console.log(valToHTML[e.nutrient][0] + `: ` + e.value);
-        $(valToHTML[e.nutrient][0]).html(`<b>` + valToHTML[e.nutrient][1] + `: </b>` + e.value + ` grams`);
-      })
-    })
-  })
-}
 
 function formatTitle(text) {  //Removes UPC and formats capitalization
   return text.toLowerCase()
