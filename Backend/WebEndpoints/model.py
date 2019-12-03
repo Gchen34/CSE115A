@@ -26,6 +26,7 @@ class Class(Base):
 class Tutor(Base):
     __tablename__ = 'tutor'
     id = Column(String(120), primary_key = True)
+    email = Column(String(100))
     name = Column(String(50))
     class_id = Column(String(10))
     def __repr__(self):

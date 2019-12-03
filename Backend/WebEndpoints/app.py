@@ -27,25 +27,43 @@ def get_tutors(classid):
     print(tutors)
     tutor_dict = []
     for tutor in tutors:
-        tutor_dict.append({"name":tutor.name, "email":tutor.id})
+        tutor_dict.append({"name":tutor.name, "email":tutor.email})
     data["tutors"] = tutor_dict 
     return app.response_class(response=json.dumps(data),status=200,mimetype='application/json')  
+@app.route('/api/addtutor', methods = ['POST'])
+def add_tutor():
+    print("added tutor")
+    id = request.form['id']
+    name = request.form['name']
+    class_id = json.loads(request.form['class_id'])
+    print(class_id)
+    for input in class_id:
+        tutor_entry = Tutor(id = (id + "_" + input), email = id, name = name,class_id = input)
+        db.add(tutor_entry)
 
+    db.flush()
+    db.commit()
+
+    return app.response_class(status = 200)
 @app.route('/api/courses/all')
 def get_courses():
     return app.response_class(response=json.dumps(COURSES),status=200,mimetype='application/json')  
 
 @app.route('/api/adduser',methods = ['POST'])
-def adduser():
+def add_user():
     email = request.form['email']
     name = request.form['name']
     new_user = User(id = email, name = name,email = email)
-    db.add(new_user)
-    db.commit()
+    try:
+        db.add(new_user)
+        db.flush()
+        db.commit()
+    except IntegrityError:
+        db.rollback()
     return app.response_class(status=200)
 
 @app.route('/api/user/<userid>', methods = ['GET'])
-def getUser(userid):
+def get_User(userid):
     print(userid)
     user = db.query(User).filter_by(id = userid).all()
     user_dict = {}
@@ -54,7 +72,7 @@ def getUser(userid):
     return app.response_class(response=json.dumps(user_dict),status=200,mimetype='application/json')
 
 @app.route('/api/sendNotification', methods = ['POST'])
-def sendEmail():
+def send_Email():
     print("in send email")
     receiver_email = request.form['receiver_email']
     receiver_name = request.form['receiver_name']
