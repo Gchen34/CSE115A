@@ -32,12 +32,18 @@ def get_tutors(classid):
     return app.response_class(response=json.dumps(data),status=200,mimetype='application/json')  
 @app.route('/api/addtutor', methods = ['POST'])
 def add_tutor():
+    print("added tutor")
     id = request.form['id']
     name = request.form['name']
-    class_id = request.form['class_id']
-    tutor_entry = Tutor(id = (id + "_" + class_id), email = id, name = name,class_id = class_id)
-    db.add(tutor_entry)
+    class_id = json.loads(request.form['class_id'])
+    print(class_id)
+    for input in class_id:
+        tutor_entry = Tutor(id = (id + "_" + input), email = id, name = name,class_id = input)
+        db.add(tutor_entry)
+
+    db.flush()
     db.commit()
+
     return app.response_class(status = 200)
 @app.route('/api/courses/all')
 def get_courses():
@@ -48,16 +54,18 @@ def add_user():
     email = request.form['email']
     name = request.form['name']
     new_user = User(id = email, name = name,email = email)
-    db.add(new_user)
-    db.commit()
+    try:
+        db.add(new_user)
+        db.flush()
+        db.commit()
+    except IntegrityError:
+        db.rollback()
     return app.response_class(status=200)
 
 @app.route('/api/user/<userid>', methods = ['GET'])
 def get_User(userid):
     print(userid)
     user = db.query(User).filter_by(id = userid).all()
-    print(user)
-    print(userid)
     user_dict = {}
     user_dict['name'] = user[0].name
     user_dict['email'] = user[0].email
