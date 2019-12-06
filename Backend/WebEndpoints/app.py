@@ -30,6 +30,7 @@ def get_tutors(classid):
         tutor_dict.append({"name":tutor.name, "email":tutor.email})
     data["tutors"] = tutor_dict 
     return app.response_class(response=json.dumps(data),status=200,mimetype='application/json')  
+# add tutor given list of classes
 @app.route('/api/addtutor', methods = ['POST'])
 def add_tutor():
     print("added tutor")
@@ -45,10 +46,11 @@ def add_tutor():
     db.commit()
 
     return app.response_class(status = 200)
+# get all courses
 @app.route('/api/courses/all')
 def get_courses():
     return app.response_class(response=json.dumps(COURSES),status=200,mimetype='application/json')  
-
+# add user to db after sign up
 @app.route('/api/adduser',methods = ['POST'])
 def add_user():
     email = request.form['email']
@@ -61,7 +63,7 @@ def add_user():
     except IntegrityError:
         db.rollback()
     return app.response_class(status=200)
-
+# get user information
 @app.route('/api/user/<userid>', methods = ['GET'])
 def get_User(userid):
     print(userid)
@@ -71,6 +73,7 @@ def get_User(userid):
     user_dict['email'] = user[0].email
     return app.response_class(response=json.dumps(user_dict),status=200,mimetype='application/json')
 
+# send email notification 
 @app.route('/api/sendNotification', methods = ['POST'])
 def send_Email():
     print("in send email")
