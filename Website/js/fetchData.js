@@ -1,19 +1,11 @@
 // This script is used to replace HTML data with dynamic data
 
-//Map values to html elements
-let valToHTML = {}  //Syntax: [`elementID`, `displayName`]
-valToHTML[`Energy`] = [`#energy`, `Calories`];
-valToHTML[`Sugars, total`] = [`#sugars`, `Sugars`];
-valToHTML[`Total lipid (fat)`] = [`#lipids`, `Fats`];
-valToHTML[`Carbohydrate, by difference`] = [`#carbs`, `Carbohydrates`];
-
 //Config
-let databasekey = `10SKlZqWe3IkC3ymxUWxzMrjgUfNFuixcuqY10gC`;
-let dbnum = `01009`;
-let ntCategories = `&nutrients=205&nutrients=204&nutrients=208&nutrients=269`;
 let flaskURL = `localhost:5000`;
 
+
 function searchTutors(searchTerm) {
+  // retrieve all tutors given a class number
   searchTerm = searchTerm.split(":")[0];
   let searchQuery = `http://${flaskURL}/api/tutors/${searchTerm}`;
 
@@ -27,6 +19,7 @@ function searchTutors(searchTerm) {
     $("#name").empty();
     $("#name").append(`<b>Available Tutors</b>`);
     
+    //for each tutor retrieved from the results append a tutor card
     for(var i = 0; i < tutors.length; i ++){
       var name = tutors[i].name.replace(" ","-")
       $("#name").append(
@@ -78,12 +71,14 @@ function loadCheckBoxes(filter=undefined) {
 }
 
 
+// add tutor based on classes selected
 function addTutor() {
   var checkValues = $('input[name=checkboxlist]:checked').map(function() {
         return $(this).parent().text();
     }).get();
   var user_email = firebase.auth().currentUser.email;
   var user_name;
+  // pass in all classes as a json string
   var searchQuery = `http://${flaskURL}/api/user/${user_email}`;
     $.get(searchQuery, function(data) {
       console.log(data);
@@ -101,6 +96,7 @@ function addTutor() {
     //do something with your checkValues array
 }
 
+// clicking request me will send a notification to the tutor's email
 function clicking(clicked_id) {
   //console.log(tutor);
   if (confirm('Clicking OK will send a tutor an email')) {

@@ -1,5 +1,5 @@
 function handleAuthChanges() {
-
+  // if firebase detects a user redirect them to the search page
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       window.location = "search.html";
