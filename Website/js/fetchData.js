@@ -14,6 +14,7 @@ let ntCategories = `&nutrients=205&nutrients=204&nutrients=208&nutrients=269`;
 let flaskURL = `localhost:5000`;
 
 function searchTutors(searchTerm) {
+  searchTerm = searchTerm.split(":")[0];
   let searchQuery = `http://${flaskURL}/api/tutors/${searchTerm}`;
 
   $.get(searchQuery, function(data) {
@@ -43,6 +44,7 @@ function searchTutors(searchTerm) {
       $(`#${name}`).data("name", tutors[i][`name`]);
       $(`#${name}`).data("email", tutors[i][`email`]);
       $(`#${name}`).data("class", searchTerm);
+      
       /*
       $("#Priya Rajarathinam").data('tutor_info',{
         name: tutors[i][`name`],
@@ -66,7 +68,7 @@ function loadCheckBoxes(filter=undefined) {
     for(var i = 0; i < options.length; i++){
       var classOptionHtml = 
         `<div class="checkbox">
-        <label><input type="checkbox" name = "checkboxlist">  ${options[i]}</label>
+        <label><input type="checkbox" name = "checkboxlist">${options[i]}</label>
         </div>`
       if (filter == undefined || options[i].startsWith(filter)) {
         $("#listofclasses").append(classOptionHtml)
@@ -87,18 +89,17 @@ function addTutor() {
       console.log(data);
       user_name = data.name;
       searchQuery = `http://${flaskURL}/api/addtutor`;
-      for(var i = 0; i < checkValues.length; i++){
-        $.post(searchQuery, 
-          { id: user_email, 
-            name: user_name,
-            class_id: checkValues[i]
-          }); 
-      }
+   
+      $.post(searchQuery, 
+        { id: user_email, 
+          name: user_name,
+          class_id: JSON.stringify(checkValues)
+        }); 
+      
   
     });
     //do something with your checkValues array
 }
-
 
 function clicking(clicked_id) {
   //console.log(tutor);
@@ -106,7 +107,7 @@ function clicking(clicked_id) {
     var tutor_name = $(`#${clicked_id}`).data("name");
     var tutor_email = $(`#${clicked_id}`).data("email");
     var class_name = $(`#${clicked_id}`).data("class");
-    var currentuser =   model.firebase.auth().currentUser;
+    var currentuser = firebase.auth().currentUser;
     var user_email = currentuser.email;
     var user_name;
     var searchQuery = `http://${flaskURL}/api/user/${user_email}`;
@@ -127,7 +128,7 @@ function clicking(clicked_id) {
   }
 }
 
-
+// This function gets the profile of the user 
 function getProfile() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -135,33 +136,19 @@ function getProfile() {
       var user_email = user.email;
       let searchQuery = `http://${flaskURL}/api/user/${user_email}`;
       $.get(searchQuery, function(data) { 
-        console.log(data);
-        let user = data['user']
-        // console.log(user);
-        
+        console.log("this is data", data);
+        let userName = data.name;
+        let userEmail = data.email;
+        $(".name").append("<b>"+ "&nbsp;"+ userName+"</b>");
+        $(".email").append("<b>"+ "&nbsp;"+ userEmail+"</b>");
+        console.log("this is the user's email", user);
       })
     } else {
       // No user is signed in.
     }
   });
+}
 
-}
-function searchItemExample(searchTerm) {
-  let searchQuery = `http://api.nal.usda.gov/ndb/search/?format=json&q=${searchTerm}&sort=r&max=5&offset=0&api_key=${databasekey}`;
-  $.get(searchQuery, function(data){
-    let selectIndex = 0;
-    let selectedItem = data.list.item[selectIndex];
-    console.log(`Database entry: ` + selectedItem.name);
-    let nutritionQuery = `https://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=${databasekey}${ntCategories}&ndbno=${selectedItem.ndbno}`;
-    $.get(nutritionQuery, function(data) {
-      $(foodName).html(`<b>Nutritional Data for ` + formatTitle(selectedItem.name) + `<b>`);
-      data.report.foods[0].nutrients.forEach((e) => {
-        console.log(valToHTML[e.nutrient][0] + `: ` + e.value);
-        $(valToHTML[e.nutrient][0]).html(`<b>` + valToHTML[e.nutrient][1] + `: </b>` + e.value + ` grams`);
-      })
-    })
-  })
-}
 
 function formatTitle(text) {  //Removes UPC and formats capitalization
   return text.toLowerCase()
