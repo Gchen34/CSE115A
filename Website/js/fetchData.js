@@ -49,15 +49,20 @@ function searchTutors(searchTerm) {
     //$("#name").html(`<b> ${tutors[0][`name`]} <b>`);
   })
 }
+
+// Display selection options matching filter as formatted list of check boxes
 function loadCheckBoxes(filter=undefined) {
   let searchQuery = `http://${flaskURL}/api/courses/all`;
 
+  // Retrieve available courses
   $.get(searchQuery).then(function (data) {
     if (data === undefined) {
       return;
     }
     options = Object.keys(data);
     $("#listofclasses").empty()
+
+    // Add a checkbox if a course matches filter
     for(var i = 0; i < options.length; i++){
       var classOptionHtml = 
         `<div class="checkbox">
